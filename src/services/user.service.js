@@ -10,11 +10,17 @@ const insert = async (displayName, email, password, image) => {
   if (image) { // Preenchimento do campo caso image seja fornecido
     newUser.image = image;
   }
-  
+
   await User.create(newUser);
   return { message: null };
 };
 
+const getAll = async () => {
+  const users = await User.findAll({ attributes: { exclude: 'password' } });
+  return users;
+};
+
 module.exports = {
   insert,
+  getAll,
 };
