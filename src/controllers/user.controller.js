@@ -32,7 +32,23 @@ const getAll = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await userService.getById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User does not exist' });
+    }
+    
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+  }
+};
+
 module.exports = {
   insert,
   getAll,
+  getById,
 };
