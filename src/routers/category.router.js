@@ -6,5 +6,6 @@ const { checkRequiredToken } = require('../middlewares/token-auth/checkRequiredT
 const router = express.Router();
 
 router.post('/', checkRequiredToken, checkRequiredField, categoryController.insert);
+router.get('/', checkRequiredToken, categoryController.getAll);
 
 module.exports = router;

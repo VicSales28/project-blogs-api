@@ -11,6 +11,17 @@ const insert = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const categories = await categoryService.getAll();
+
+    return res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+  }
+};
+
 module.exports = {
   insert,
+  getAll,
 };
