@@ -5,5 +5,6 @@ const { checkRequiredToken } = require('../middlewares/token-auth/checkRequiredT
 const router = express.Router();
 
 router.get('/', checkRequiredToken, blogPostController.getAll);
+router.get('/:id', checkRequiredToken, blogPostController.getById);
 
 module.exports = router;
